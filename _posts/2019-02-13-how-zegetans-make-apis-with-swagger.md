@@ -23,14 +23,14 @@ OpenAPI specification is a standardized way of describing RESTful services that 
 ## Getting Started with Swagger toolchain
 [Swaggerhub](app.swaggerhub.com) is an online collaborative platform that enables API developers team up to design, define, test, document and produce APIs. It contains tools that are most needed by API developers and applicable in almost all cases. Swaggerhub's toolchain consists of the following major functionalities:
 
-- API Specification
+- API Definition
 - API Validation
 - API documentation
 - CodeGen
 
 To keep things more fun and practical you can checkout the [petstore](http://petstore.swagger.io) or head to the [resource section](#resources) at the end and check out the blogging API specification, clone it to your own API specification.
 
-### API Specification
+### API Definition
 
 This is the design and description of APIs. Since Swagger is primarily focused on creating RESTful web services, it would be important to quickly look at how an HTTP request and response looks like! 
 
@@ -65,22 +65,24 @@ Swagger comes in to ensure a seamless communication between the client and the s
 
 How?
 
-Swagger primarily uses yaml to provide a specification for APIs. However, you are free to write write the specification in JSON, Swagger will still understand the JSON format specification. 
+OpenAPI documents can be written in both JSON and yaml. Yaml is the primary format used on Swagger but json is fully supported and specification examples are provided in both formats.
 
 [JSON API specification standard format](https://jsonapi.org/format/)
 
-Swagger specification consists of 3 main parts:
-- General Info
+## Structure of an OpenAPI Definition Document
 
+Any definition consists of 3 main parts:
+- General Info
 This is the part where you can give descriptive information about your API including API version, Title, Description, Licence info, contact info etc
 
 - Servers
-
-This is where you give a specification of your API host and base urls meaning that the endpoints in your path section correspond to your base urls.
+The servers section is a list of hosts where your API can be reached on.
+The hosts could be e.g a testing server, sandbox server and production server.
 
 - Paths
 
-This is where you describe the individual endpoints where the clients would be sending their requests to. You'll be required to describe how to authenticate and authorize the requests, the content types of both requests and responses, information that goes into the bodies of requests and responses.
+This is where you describe the individual endpoints where the clients would be sending their requests to.
+You'll be required to describe how to authenticate and authorize the requests, the content types of both requests and responses and the structure of the information that goes into the bodies of requests and responses.
 
 Here's part of the blogging system API specification. You can jump to the [resources section](#resources) for a deeper peek into the specification. 
 
@@ -115,7 +117,30 @@ paths:# Path info goes here
 
 ~~~
 
-Swaggerhub provides an editor where you could write in your API specifications. However, you could also create the specifications using GUI tools to help you create the specification visually. Some of the most common GUI API specification editors include:
+## Request/Response Structure
+It is almost guaranteed that if you and I were to write a definition for the same API, we would have different data structures for the requests and most certainly for the responses.
+We use a JSON specification to mitigate against endless discussions around how to structure JSON data.
+The [JSON:API](https://jsonapi.org/format/) specification provides a well defined structure and rules to write consistent JSON data.
+Besides enabling a team to produce a consistent definition even while working in parallel, the requests and responses will be immediately familiar to developers familiar with the JSON:API specification.
+~~~ json
+{
+  "data": {
+    "type": "blog",
+    "id": "1",
+    "attributes": {
+      "title": "quite the title",
+      "text": "and the text to go with it"
+    }
+  }
+}
+~~~
+The above represents a single blog *resource*, which would be the response to a `GET /blogs/1` request. This is the typical structure for a JSON:API resource.
+
+Besides recommended request/response structures, the specification also gives guidance on expected HTTP response codes and what data should accompany them.
+It also includes a structure for errors and a means to model *relationships* between your API's resources.
+
+## Writing your Definition
+Swaggerhub provides an [editor](https://editor.swagger.io/) where you could write in your API definition. However, you could also create the definitions using GUI tools to help you create the specification visually. Some of the most common GUI API specification editors include:
 
 - [Restlet](https://studio.restlet.com/)
 - [Spotlight](https://stoplight.io/)
