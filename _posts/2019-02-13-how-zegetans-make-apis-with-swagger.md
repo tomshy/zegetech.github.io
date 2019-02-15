@@ -244,7 +244,7 @@ Swagger Codegen is a tool that automatically generates client SDKs for more that
 
 With all the swagger features mentioned here and others like cloud storage, integration with source control tools like Git and deployment to API management platforms like AWS, it would be correct to put swagger as an all in one tool for your API lifecycle. So, let swagger handle things for you! It will help you save time, minimize errors and get things done faster.
 
-## Finally
+### Finally,
 
 Are you a Postman fan? It is amazing how OpenAPI Specification works with Postman besides testing the mock Swagger server. With a single Postman import, you can sync your OpenAPI Specification into Postman and quickly convert it into a Postman collection. The new 'OAS-postman' collection created can also get automatic updates once you make changes to your OAS, meaning no manual updates on Postman. 
 
