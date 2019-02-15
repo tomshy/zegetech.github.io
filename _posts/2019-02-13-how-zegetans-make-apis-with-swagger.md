@@ -14,11 +14,19 @@ intro: We recently covered [API deep dive](2018-12-08-api-dive.md), where we got
 
 {{page.intro}}
 
-This is a walkthrough of the standardized and modern way of creating APIs that will help speed things up to allow you to focus on the business logic, swagger is based on this principle. 
+The OpenAPI specification is a standardized way of describing RESTful services that enables both humans and machines to understand the services without much hustle.
+It gives stakeholders a means to define the specifics of what to build, with the definition acting as both a design and documentation tool.
 
-We can't mention swagger without mentioning OpenAPI Specification. What is it then? 
+An API definition provides the bridge for teams developing typical SPA(Single Page Application) plus API architectured applications.
+It allows both the frontend and backend teams to work in tandem and be sure that their code will integrate seamlessly.
+OpenAPI has tooling around it to generate sample client and server code enabling each team test their code before the actual components are complete.
+There are also tools to generate documentation for the API ensuring that documentation is not the after-thought that it normally is.
 
-OpenAPI specification is a standardized way of describing RESTful services that enables both humans and machines to understand the services without much hustle. If this is the first time you are seeing this, it may be confusing to distinguish between OpenAPI and Swagger. OpenAPI specification is a Swagger specification evolution. It got separated as a standalone initiative back in 2015 after its donation to the Linux Foundation. Currently, Swagger is just but an API tooling service.
+You might come across *openapi* and *swagger* used interchangeably on the internet. This is a testament to the origins of the OpenAPI specification.
+The specification was first developed as the *Swagger specification* before being renamed in 2015 after its donation to the Linux Foundation.
+Swagger today refers to the suite of API development tools covering the entire API development lifecycle, from design to testing and deployment.
+
+
 
 ## Getting Started with Swagger toolchain
 [Swaggerhub](app.swaggerhub.com) is an online collaborative platform that enables API developers team up to design, define, test, document and produce APIs. It contains tools that are most needed by API developers and applicable in almost all cases. Swaggerhub's toolchain consists of the following major functionalities:
@@ -80,7 +88,6 @@ The servers section is a list of hosts where your API can be reached on.
 The hosts could be e.g a testing server, sandbox server and production server.
 
 - Paths
-
 This is where you describe the individual endpoints where the clients would be sending their requests to.
 You'll be required to describe how to authenticate and authorize the requests, the content types of both requests and responses and the structure of the information that goes into the bodies of requests and responses.
 
@@ -178,3 +185,4 @@ With all the swagger features mentioned here and others like cloud storage, inte
 2. [Try out Swagger](https://app.swaggerhub.com/)
 3. [Understanding JSONAPI](https://jsonapi.org/format/)
 4. [OpenAPI Specification](https://github.com/tomshy/OpenAPI-Specification/blob/master/versions/3.0.2.md)
+
