@@ -258,11 +258,12 @@ Steps:
 
 If successful, consider your API mocked with Swagger
 
+PS: OpenAPI has a collection of tools that come in handy when defining your OAS. You can check out the various [OpenAPI tools here](https://openapi.tools/)
 
 ## Resources
+
 
 1. [Blogging System API specs](https://app.swaggerhub.com/apis/tomshy/Searails_Blog_API/1.0.0)
 2. [Try out Swagger](https://app.swaggerhub.com/)
 3. [Understanding JSONAPI](https://jsonapi.org/format/)
 4. [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md)
-5. [OpenAPI tools](https://openapi.tools/)
