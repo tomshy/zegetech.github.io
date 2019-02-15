@@ -103,7 +103,7 @@ III. Paths
 
 This is where you describe the individual endpoints where the clients would be sending their requests to. You'll be required to describe how to authenticate and authorize the requests, the content types and information that goes into the bodies of requests and responses.
 
-#### Components part
+<span style="font-size: 18px;">Components part</span>
 
 This is an optional part. It holds the various reusable objects for the specification fields including:
 
