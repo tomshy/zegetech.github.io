@@ -103,7 +103,7 @@ III. Paths
 
 This is where you describe the individual endpoints where the clients would be sending their requests to. You'll be required to describe how to authenticate and authorize the requests, the content types and information that goes into the bodies of requests and responses.
 
-- Components part
+#### Components part
 
 This is an optional part. It holds the various reusable objects for the specification fields including:
 
@@ -211,9 +211,7 @@ For more on JSONAPI, visit [JSONAPI documentation](https://github.com/OAI/OpenAP
 
 While creating OpenAPI documents could be considered fun, it gets tiring, especially if you are designing a large scale API. 
 
-Solution? Visual api design tools. 
-
-Here's a list of the commonly used OAS visual design tools:
+Solution? Visual api design tools. Here's a list of the commonly used OAS visual design tools:
 
 - [Restlet](https://studio.restlet.com/)
 - [Spotlight](https://stoplight.io/)
@@ -240,21 +238,24 @@ You can even merge an existing documentation for an API be it in the cloud stora
 It is recommended that even after drafting the documentation from within the Swagger specification you need to expound it further with the help of technical writers so that the final document can be understandable by your end users because it really plays a huge role in breaking or moulding the uptake of your API.
 
 ### Swagger CodeGen
-With the advent of so many programming languages, you wouldn't know the implementation language of your API consumers, the developers. It would only be prudent to write client SDKs for the various languages but it would be a real pain for many companies especially smalle companies. Even the bigger companies would feel the pain of writing client codes for more than 20 major languages. This would mean hiring top developers for all these major languages. This is where Swagger Codegen comes in.
+With the advent of so many programming languages, you wouldn't know the implementation language of your API consumers, the developers. It would only be prudent to write client SDKs for the various languages but it would be a real pain for many companies especially smaller companies. Even the bigger companies would feel the pain of writing client codes for more than 20 major languages. This would mean hiring top developers for all these major languages. This is where Swagger Codegen comes in.
 
 Swagger Codegen is a tool that automatically generates client SDKs for more that 40 languages from your API specification. You simply describe your specification and Swagger Codegen does the rest. If you need to make any changes, you would only need to make the change once to your API spec then Codegen will propagate the change across your client SDKs. Another gem them there, right?
 
 With all the swagger features mentioned here and others like cloud storage, integration with source control tools like Git and deployment to API management platforms like AWS, it would be correct to put swagger as an all in one tool for your API lifecycle. So, let swagger handle things for you! It will help you save time, minimize errors and get things done faster.
 
-## Finally,
+Are you a Postman fan? It is amazing how OpenAPI Specification works with Postman besides testing the mock Swagger server. With a single Postman import, you can sync your OpenAPI Specification into Postman and quickly convert it into a Postman collection. The new 'OAS-postman' collection created can also get automatic updates once you make changes to your OAS, meaning no manual updates on Postman. 
 
-Once you are done designing the API, developers can simulate each endpoint and its corresponding response(mock). For an example mocking exercise, let's use postman. 
+For an example testing exercise, let's use postman. 
 
 Steps:
-1. Launch postman.
-2. The import button.
-3. You'll be prompted to enter the url of your spec or paste the raw specification. 
-4. Then....do all things postman and consider your spec mocked. 
+1. Launch postman
+2. Click 'NEW' to create a request
+3. Paste the Swagger virtual server's URL from your API definition to the url request field on Postman.
+4. Then perform all the requests on the endpoints defined in the API definition. 
+
+If successful, consider your API mocked. 
+
 
 ## Resources
 
