@@ -18,7 +18,9 @@ We can't mention swagger without mentioning OpenAPI Specification. What is it th
 
 The OpenAPI specification is a standardized way of describing RESTful services that enables both humans and machines to understand the services without much hustle. It gives stakeholders a means to define the specifics of what to build, with the definition acting as both a design and documentation tool.
 
-An API definition provides the bridge for teams developing a typical SPA(Single Page Application) plus API architectured applications. It allows both the frontend and backend teams to work in tandem and be sure that their code will integrate seamlessly. OpenAPI has tooling around it to generate sample client and server code enabling each team to test their code before the actual components are complete. There are also tools to generate documentation for the API ensuring that documentation is not the after-thought that it normally is.
+API definition has led to the adoption of API driven architecture where the server and client communicate through HTTP using JSON as the requests' and responses' payload and relying on the REST CRUD methods. This has brought the backend architecture to the frontend allowing both the frontend and backend teams to work in tandem and be sure that their code will integrate seamlessly hence acting as a bridge. This is the reason behind the rise of Single Page applications(SPAs). OpenAPI has tooling around it to generate sample client and server code enabling each team to test their code before the actual components are complete. 
+
+![spapi](/assets/images/blog/swagger/spa.jpg){:class="img-responsive center"}
 
 You might come across openapi and swagger being used interchangeably on the internet. This is a testament to OpenAPI specification that it's actually an evolution from swagger specification. The specification was first developed as the Swagger specification before being renamed in 2015 after its donation to the Linux Foundation, by [smartbear](https://smartbear.com/) - bits of history there!
 
