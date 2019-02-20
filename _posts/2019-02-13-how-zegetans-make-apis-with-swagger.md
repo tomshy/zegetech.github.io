@@ -68,8 +68,7 @@ I. General Info
 
 This is the part where you can give descriptive information about your API including API version, Title, Description, Licence info, contact info etc
 
-An example: 
-
+An example:
 ~~~
 info:
     title: Blog API
@@ -90,7 +89,6 @@ The servers section is a list of hosts where your API can be reached on.
 The hosts could be e.g a testing server, sandbox server and production server.
 
 Example:
-
 ~~~
 servers:
     - url: https://developmentserverexample.server.com/v1
@@ -105,9 +103,31 @@ III. Paths
 
 This is where you describe the individual endpoints where the clients would be sending their requests to. You'll be required to describe how to authenticate and authorize the requests, the content types and information that goes into the bodies of requests and responses.
 
+Example: 
+~~~
+	paths:
+	  /blog-resource/:
+	    get:
+	      summary: Endpoint summary
+	        requestBody: 
+	          GET request body	                  
+	        responses:
+	         '201':
+	          description: Created
+	          content: 
+	          	Response body
+	            example:
+	              data:
+	                - type: example type
+	                  id: 1
+	                  attributes:
+	                    title: first blog
+	                    text: some text
+	                    author_id: "1"
+~~~
 <span style="font-size: 18px;">Components part</span>
 
-This is an optional part. It holds the various reusable objects for the specification fields including:
+This is an optional part. It holds information on entities or models that the API specification deals with including:
 
 1. schemas : An object containing the definition of input and output data types.
 2. responses : An object containing responses that can be reused through out the specification
@@ -116,6 +136,25 @@ This is an optional part. It holds the various reusable objects for the specific
 5. Requestbodies : An object containing reusable single requets models.
 6. Headers : Reusable headers
 7. SecuritySchemes : An object that defines a security scheme that can be used by the operations.
+
+Example:
+~~~
+components:
+  schemas:
+    entity:
+     type: entity type
+     description: entity description
+     properties:
+       property1:
+         type: #string, integer etc
+       property2:
+         type: #array, etc
+     required:
+       - required_property1
+       - required_property2
+~~~
+
+An entity is like an object in OOP. It can be a blog entity, article entity, comment entity etc for our Blogging System API.
 
 Here's part of the blogging system API specification. Jump to the [resources section](#resources) for a deeper peek at the specification. 
 
@@ -161,6 +200,24 @@ paths:# Path info goes here
                         title: first blog
                         text: some text
                         author_id: "1"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+        full_name:
+          type: string
+      required:
+        - username
+        - password
+        - full_name
 ~~~
 
 #### JSONAPI
@@ -246,7 +303,17 @@ Swagger Codegen is a tool that automatically generates client SDKs for more that
 
 With all the swagger features mentioned here and others like cloud storage, integration with source control tools like Git and deployment to API management platforms like AWS, it would be correct to put swagger as an all in one tool for your API lifecycle. So, let swagger handle things for you! It will help you save time, minimize errors and get things done faster.
 
-### Finally,
+### Mocking with Swagger
+
+Maybe you've been following through with practical API definition on your Swaggerhub, would you love to test your API specification? This needs a backend service that would actually respond to requests made. Don't worry if you don't have or can't setup a backend server for this, Swagger got you covered with its Virtserver mock server. It comes automatically integrated into your API specs on Swaggerhub. You can confirm this under the 'servers' part in your API definition.
+
+See [our blogging system API specification](https://app.swaggerhub.com/apis/tomshy/Searails_Blog_API/1.0.0) under 'servers' part.
+
+You can test if the swagger auto-mocking worked by testing out the API endpoints. The easiest would be to test a GET request from the browser. Paste the Swagger virtserver url into the URL field on your browser and append your GET request endpoint. You should get a JSON formatted response on your browser. 
+
+Want to try out other mocking tools? Refer to [API deep dive](2018-12-08-api-dive.md) for a list of mocking tools.
+
+### Finally, 
 
 Are you a Postman fan? It is amazing how OpenAPI Specification works with Postman besides testing the mock Swagger server. With a single Postman import, you can sync your OpenAPI Specification into Postman and quickly convert it into a Postman collection. The new 'OAS-postman' collection created can also get automatic updates once you make changes to your OAS, meaning no manual updates on Postman. 
 
@@ -258,7 +325,7 @@ Steps:
 3. Paste the Swagger virtual server's URL from your API definition to the url request field on Postman.
 4. Then perform all the requests on the endpoints defined in the API definition. 
 
-If successful, consider your API mocked with Swagger
+If successful, consider your API working and mocked.
 
 PS: OpenAPI has a collection of tools that come in handy when defining your OAS. You can check out the various [OpenAPI tools here](https://openapi.tools/)
 
