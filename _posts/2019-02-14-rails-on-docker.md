@@ -1,12 +1,11 @@
 ---
 layout: blog
 title: Rails on Docker
-date: 2019-02-14 12:53 +0300
+date: 2019-02-14 08:00 +0300
 categories: developer
-published: false
 author: Melvin Atieno, Ngari Ndung'u, Tom Nyongesa, Kariuki Gathitu
 blog-image: rails-docker/railsondocker.png
-intro: Rails and Docker are important components in the development processes at Zegetech. Rails is our chosen platform for most of what we build, and docker provides pain-free environment management both for development and in production. We have previously covered these two technologies separately, and this post covers the sweet spot at their intersection. We will take you through the process of configuring a rails development environment on docker, and configure a postgres database for it.
+intro: Rails and Docker are important components in the development processes at Zegetech. Rails is our chosen platform for most of what we build, and docker provides pain-free environment management both for development and in production. We have previously covered these two technologies separately, and this post covers the sweet spot at their intersection. We will take you through the process of configuring a rails development environment on docker, and configure a postgresql database for it.
 ---
 ![Cover Image](/assets/images/blog/{{page.blog-image}}){:class="img-responsive center"}
 
@@ -97,6 +96,9 @@ EXPOSE 3000
 CMD ["puma", "-C", "config/puma.rb"]
 ```
 
+{:.image-attribution}
+Dockerfile
+
 We run the Dockerfile installation commands as a new `deploy` user, which is the [recommended practice](https://medium.com/@mode/processes-in-containers-should-not-run-as-root-2feae3f0df3b). And when we copy files across, in order to avoid permission issues, we make sure the copy user is the non-root user we created. 
 
 ```ruby
@@ -104,6 +106,9 @@ We run the Dockerfile installation commands as a new `deploy` user, which is the
 source 'https://rubygems.org'
 gem 'rails'
 ```
+
+{:.image-attribution}
+Gemfile
 
 ```yaml
 # docker-compose.yml
@@ -135,7 +140,11 @@ services:
 volumes:
   data:
 ```
-Mapping volumes in the app service, `.:/home/deploy/app` only happens when running with docker-compose. This is so that the developer can have realtime interaction with the app in the container when developing. Otherwise, you'd need to restart the container everytime you made changes. This however does not extend to the initial files we had, mainly the `Gemfile`. Any Change to the `Gemfile` or `Dockerfile` will require a rebuild of the container. We have also used a different service for the database. Postgres will reside in its own container. We are also binding the container port 3000 to our host machines (your laptop) port 80.
+
+{:.image-attribution}
+docker-compose.yml
+
+Mapping volumes in the app service, `.:/home/deploy/app` only happens when running with docker compose. This is so that the developer can have realtime interaction with the app in the container when developing. Otherwise, you'd need to restart the container everytime you made changes. This however does not extend to the initial files we had, mainly the `Gemfile`. Any Change to the `Gemfile` or `Dockerfile` will require a rebuild of the container. We have also used a different service for the database. Postgres will reside in its own container. We are also binding the container port `3000` to our host machines (your laptop) port `80`.
 
 ```bash
 # .dockerignore
@@ -151,6 +160,9 @@ secrets/*
 **/docker-compose.yml
 **/Dockerfile
 ```
+
+{:.image-attribution}
+.dockerignore
 
 ## Rails App
 ### 1. Generate New Rails app
@@ -182,6 +194,9 @@ default: &default
   username: postgres # default user for postgresql docker image
   password: mysecretpassword # must match POSTGRES_PASSWORD in docker-compose.yml
 ```
+
+{:.image-attribution}
+app/config/database.yml
 
 Now start the app daemonized
 

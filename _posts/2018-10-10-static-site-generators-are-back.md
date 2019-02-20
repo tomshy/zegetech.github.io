@@ -173,7 +173,7 @@ On installation, a jekyll site usually looks something like this:
 8. `index.md`- Provided that the file has a front-matter section, it will be transformed by Jekyll. The same will happen for any `.html`, `.markdown`,  `.md`, or `.textile` file in your site’s root directory or directories not listed above.
 
 **Others**
-As you grow and start building more complex sites with jekyll, you will find the need to switch up the directory structure to accomodate all your interesting features. Here are a few directories that are commontly added;
+As you grow and start building more complex sites with jekyll, you will find the need to switch up the directory structure to accommodate all your interesting features. Here are a few directories that are commontly added;
 
 `_layouts`- As the name suggests, this is where you put you custom page layouts. The basic description for the placement of the site's content.
 
@@ -191,6 +191,37 @@ Great now run Jekyll
 ```bash
 bundle exec jekyll serve
 ```
+
+**Streamline the Writing Process**
+
+Writing content for a Jekyll site involves both writing the content and the configuration(front-matter) for how the content will be handled.
+It is easy, especially when getting started to forget important bits that Jekyll requires in order to properly generate your pages.
+A common omission is the date part in the filename for posts or the `layout:` in the front-matter resulting to 'missing' posts or in the latter case an improperly formatted page.
+[jekyll-compose](https://github.com/jekyll/jekyll-compose) is a Jekyll plugin to help ease these pains.
+
+Jekyll-compose extends the Jekyll CLI with five commands; *draft*, *post*, *page* to create their respective content, *publish* and *unpublish* to move content between the *_posts* and *_drafts* directories.
+To install the plugin, we first add it to the `:jekyll-plugins` group in our Gemfile:
+~~~ ruby
+group :jekyll-plugins do
+  # other plugins
+  gem "jekyll-compose"
+end
+~~~
+Then install with `bundle install`.
+We should now be able to generate a new post with; `bundle exec jekyll post "new post title"`.
+This will add a properly named file to the _posts directory.
+The plugin sets some default front-matter including the *title* and *date*. We can configure extra metadata in the `_config.yml` file under the `jekyll_compose` key.
+~~~ yaml
+jekyll_compose:
+  post_default_front_matter:
+    layout: blog
+    categories:
+    published: false
+    author:
+    blog-image: 
+    intro: 
+~~~
+With this set-up, you will be guaranteed that all your posts have the expected structure. This is especially useful while working with multiple contributors.
 
 **Resources:**
 
