@@ -274,6 +274,8 @@ Solution? Visual api design tools. Here's a list of the commonly used OAS visual
 - [APIBldr](https://apibldr.com/)
 - [OpenAPI designer](https://openapi.design/)
 - [OpenAPI GUI](https://mermade.github.io/openapi-gui/)
+- [API Curio by Redhat](https://www.apicur.io/) (opensource)
+- [Apigility](https://apigility.org/) (opensource)
 
 Feel free to explore them and settle on one that best suits your needs if you find the visual definition simpler.
 

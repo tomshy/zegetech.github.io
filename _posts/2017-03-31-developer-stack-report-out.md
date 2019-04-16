@@ -114,4 +114,4 @@ Please feel free to connect with us on our website, email or linkedin page. We a
 	</form>
 </div>
 
-[Download the report here](http://bit.ly/2myyOLQ). Feel free to contact us at [hi@zegetech.com](mailto:hi@zegetech.com) 
+[Download the report here](http://bit.ly/2myyOLQ). Feel free to contact us at [hi[at]zegetech[dot]com](/mailtohi.html) 
