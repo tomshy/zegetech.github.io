@@ -140,7 +140,7 @@ promo_intro: Run . Inspire . Shatter . Everything . We RISE to the occasion. Eve
 		<div class="row">
 			<div class="info col-md-7 col-sm-6 col-xs-12">
 				<p>Do you want to impact millions across Africa through technology? If so, then you are in good company. We work with the best, top 2% talent in the region and strongly believe in the swahili proverb, <b>"Kizuri Chajiuza, Kibaya Chajitembeza"</b> - "A good thing sells itself, a bad thing hawks itself"</p>
-				<p>If you would love to join our team and become a Zegetan, please email your CV and linkedin profile to <a href="mailto:talent@zegetech.com">talent@zegetech.com</a> or follow the link below.</p>
+				<p>If you would love to join our team and become a Zegetan, please email your CV and linkedin profile to <a href="/mailtotalent.html">talent[at]zegetech[dot]com</a> or follow the link below.</p>
 				<a href="talent.html" class="btn btn-cta btn-cta-primary">Apply to join our team!</a>
 			</div>
 			<div class="partner col-md-4 col-sm-5 col-xs-12 col-md-push-1 col-sm-push-1 col-xs-push-0">
