@@ -20,21 +20,21 @@ The focus of this piece isn't really confined to PHP developers moving to ruby b
 
 PHP has been around for decades making it the tools of choice for many new developers to get into the world of web development because of its huge and well developed ecosystem. It's normally the first language newbies are introduced to.
 
-My primary development language has been PHP with Laravel being the main framework of development until luckily, I was introduced to [Ruby](https://www.ruby-lang.org/) by our CEO Kariuku Gathitu 3 months ago. Lucky because I thought PHP was "the end all" of programming and wasn't thinking of a shift, especially one of sweetness and joy that Ruby brought into my development life. It is literally structured in a way that makes developers feel happy, fewer lines of code, lots of gems etc... Its creator, [Yukihiro Matsumoto](https://en.wikipedia.org/wiki/Yukihiro_Matsumoto) must have created it to make developers happy.
+My primary development language has been PHP with Laravel being the main framework of development until luckily, I was introduced to [Ruby](https://www.ruby-lang.org/) by our CEO Kariuku Gathitu 3 months ago. Lucky because i though PHP was "be all and end all" of programming. I'd never have contemplated a shift, neither would I have imagined moving would embody the sweetness and joy that Ruby brought into my development life. It is literally structured in a way that makes developers feel happy, fewer lines of code, lots of gems and support. Its creator, [Yukihiro Matsumoto](https://en.wikipedia.org/wiki/Yukihiro_Matsumoto) must have created it to make developers happy.
 
 ![ruby](/assets/images/blog/php-ruby/ruby.jpg){:.img-responsive .center}
 
-But before the sweetness came the adaptation, understanding how Ruby is structured, its installation, gems (ruby libraries - literally has a gem for most things a developer could want) and the Ruby on Rails framework.
+Prior to the sweetness came the adaptation, understanding how Ruby is structured, it's installation, gems (ruby libraries - literally has a gem for most things a developer could want) and the Ruby on Rails framework.
 
 ![phptoruby](/assets/images/blog/php-ruby/phptoruby.png){:.img-responsive .center}
 
-I believe that it would be easier for the newbies in programming to dive into Ruby than for intermediate programmers switching to ruby. The challenge for the intermediate programmers is "force of habit". They always write the new language code with their old language style, principles and philosophies. In my case, I had to unlearn and unset my expectatins brought about by coding in PHP. In the end, the mindshift was worth it, allowing me to use my experience in coding to fly through Ruby.     
+I believe that it would be easier for the newbies in programming to dive into Ruby than for intermediate programmers switching to ruby. The challenge for the intermediate programmers is "force of habit". They are more likely to write the new language code with their old language style, principles and philosophies. In my case, i had to unlearn and unset my expectations brought about by coding in PHP. In the end the mindshift was worth it, allowing me to use my experience in coding to fly through Ruby.     
 
-But hey, don't be scared, I just said ruby brought much joy to my development life and the 2 languages are kind of similar in some ways. 
+But hey, don't be scared, I just said ruby brought much joy to my development life and the two languages are kind of similar in some ways. 
 
 ### Here are the ways in which the 2 languages are similar:
 - They are both interpreted languages
-- They are both Object Oriented languages with classes, variables and methods having the 3 access control methods - private, protected and public; abstraction, inheritance and other OOP featues working the same way
+- They are both Object Oriented languages with classes, variables and methods having the 3 access control methods - private, protected and public; abstraction, inheritance and other OOP features working the same way
 - They are both dynamically typed languages, so no declaring variable types like in java. You simply declare a variable For example:
 
 ```ruby
@@ -151,7 +151,7 @@ Let's now delve into the delicious parts of ruby.
 ### Code Quality
 Reliability, maintainability and readability all characterize good code. Ruby was designed in a way that made achieving high quality code easier. A ruby developer doesn't even require years of experience before writing good code. With practices like separation of business logic from MVC implementation, use of problem detection gems and test automation, writing good code is assured.
 ### Tools
-Ruby provides a [respository](https://rubygems.org/) of libraries called gems that techinically help developers do more in less time. There's a gem for almost anything you could think of. Think of any functionality, type it into the Ruby repo and boom, you'll be surprised of the number of options available. Another plus is that gem installation is quite simple. All you need to do is type into your command line:
+Ruby provides a [repository](https://rubygems.org/) of libraries called gems that technically help developers do more in less time. There's a gem for almost anything you could think of. Think of any functionality, type it into the Ruby repo and boom, you'll be surprised of the number of options available. Another plus is that gem installation is quite simple. All you need to do is type into your command line:
 ```ruby
 gem install gem-name
 # or simply include it into a Gemfile and use bundler by running
@@ -172,15 +172,16 @@ end
 Ruby also provides tools that help ensure the security of your application. With tools like Brakeman and Rubocop, static code analysis is enabled. This helps ensure that a developer writes code that is tamper-proof and prevent hacker activities in production.
 
 ### Built for the future
-With so many startups preferring Ruby as their primary programming languages, I would say Ruby was built for the future. This was fueled by the MVC philosophy pioneered by Ruby on Rails and is now being adopted by other languages in the form of Laravel, Meteor etc. Statistics also show that most developers are interested in learning Ruby, online learning platforms are also getting more people joining Ruby classes now than before. This just proves that in the coming years Ruby will take the lead. 
 
-if you don't believe me, here is a google trends comparison between [Rails and Laravel in the US](https://trends.google.com/trends/explore?geo=US&q=%2Fm%2F0505cl,laravel){:data-proofer-ignore=''}, which is a trend setting market in technology. 
+With many startups globally preferring Ruby as their primary programming languages, I would say Ruby was built for the future. This trend has been fueled by the MVC philosophy pioneered by Ruby on Rails and is now being adopted by other languages in the form of Laravel, Meteor etc. Statistics also show that most developers are interested in learning Ruby. Online learning platforms are also getting more people joining Ruby classes now than before. This just proves that in the coming years Ruby will take the lead. 
+
+if you don't believe me, here is a google trends comparison between [Rails and Laravel in the US](https://trends.google.com/trends/explore?geo=US&q=%2Fm%2F0505cl,laravel){:data-proofer-ignore=''}, which is a trendsetting market in technology. 
 
 ![Laravel vs Rails](/assets/images/blog/php-ruby/laravelvrails-us.png){:.img-responsive .center}
 
 The [Kenyan trend results](https://trends.google.com/trends/explore?geo=KE&q=%2Fm%2F060kv,%2Fm%2F06ff5){:data-proofer-ignore=''} are quite worrisome and it seems developers are still stuck in legacy and haven't been enlightened enough to make the move. Better get ready for the future!
 
-![Larvel vs Rails](/assets/images/blog/php-ruby/laravelvrails-ke.png){:.img-responsive .center}
+![Laravel vs Rails](/assets/images/blog/php-ruby/laravelvrails-ke.png){:.img-responsive .center}
 
 ### Opportunity
 Notable companies in the global and local markets using Ruby and RoR include:
@@ -203,7 +204,6 @@ Notable companies in the global and local markets using Ruby and RoR include:
 [Tezza](https://www.tezzasolutions.com/)<br>
 [Lipa Later](https://lipalater.com/)
 
-
 Everyone is moving to Ruby, why don't you? 
 
 ## PHP vs Ruby
@@ -215,7 +215,7 @@ Everyone is moving to Ruby, why don't you?
 | Popularity| More popular(large developer community) | Less popular |
 | Jobs Posting| 21% | 3% |
 | Ease of development| Takes time | Saves time |
-| Famous Web Framework| Laravel, others: codeignite | Ruby on Rails, others: Sinatra |
+| Famous Web Framework| Laravel, others: codeigniter | Ruby on Rails, others: Sinatra |
 
 ## Takeaway
 
