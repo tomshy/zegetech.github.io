@@ -6,7 +6,7 @@ addons:
     - libcurl4-openssl-dev # required to avoid SSL errors
     
 rvm:
-  - 2.5.1
+  - 2.6.2
 
 branches:
   only:

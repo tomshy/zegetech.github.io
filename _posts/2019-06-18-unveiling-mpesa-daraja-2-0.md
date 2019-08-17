@@ -85,7 +85,7 @@ For those who would like to have a deeper understanding and look at the proposed
 
 *Please note that we only have a proposal for the B2C and C2B APIs. Be on the look out for proposals of other APIs like C2B express checkout commonly know as STK Push, B2B transfers, Account Balance query, Transaction reversal and more.*
 
-![ERD](/assets/images/blog/daraja-2/ERD_v4.png){: .img-responsive .center}
+![ERD](/assets/images/blog/daraja-2/uniapi.png){: .img-responsive .center}
 
 *You can also contribute to this design by editting its StarUML file found [here](/assets/images/blog/daraja-2/uniapi.mdj)*
 
@@ -217,6 +217,7 @@ My feedback:
 - requires more bandwidth hence expensive
 - confusing and vague xml tag naming
 - can pose a difficulty especially when trying to parse `CDATA`
+- use of a global uuid(OriginatorConversationID) that is globally unique on Mpesa system, meaning that a developer would need to have a globally unique id that is unique across their system and not per the DB models. Using a similar uuid for another API say B2B would result in `Duplicate OriginatorConversationId` response. This is not so common and could be a major drawback - most developers are used to `id` as Primary Key. 
 
 <a name="mpesa_daraja"></a>
 The REST based Daraja implementation of the same B2C request:
@@ -265,6 +266,7 @@ My feedback:
 - contains too much information that would otherwise be dropped
 - puts too much security weight on developer(process of generating the Security Credential)
 - confusing naming of keys. One can't easily differentiate Party A, from Party B and Initiator Name. In fact the description on the docs confuses newbies further.
+- use of CamelCase naming style which reduces readability.
 
 Proposed Daraja 2.0 implementation of the B2C API :
 
@@ -275,8 +277,11 @@ curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-T
         "type" : "pay_outs",
         "id" : 1,
         "attributes" : {
+            "uuid": "1_payout",
             "category": "BusinessPayment",
             "amount": 1000,
+            "recipient_id": "", # optional
+            "recipient_id_type":"", # optional
             "recipient_no": "25472264885",
             "posted_at": "2019-03-18T17:22:09.651011Z"
         }
@@ -292,7 +297,8 @@ curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-T
     "type": "pay_outs",
     "id": 1,
     "attributes": {
-      "msg_id": "AG_20190417_000049de14ae0c48"
+      "msg_id": "AG_20190417_000049de14ae0c48",
+      "uuid": "1_payout"
     }
   }
 }
@@ -305,6 +311,84 @@ My feedback:
 - self descriptive
 - good naming conventions
 - lightweight
+- good use of snake_case naming style which is a widespread convention in json. This greatly improves readability as opposed to CamelCase. 
+
+Winner?
+
+Before we even declare the winner from the benchmarking exercise, perhaps it would be great to examine the `Transaction Status API` to help us understand better on why Mpesa never released an API. 
+
+Here's the Legacy's implementation:
+
+#### Request
+
+```
+<soapenv:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:req="http://api-v1.gen.mm.vodafone.com/mminterface/request" 
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header>
+        <tns:RequestSOAPHeader xmlns:tns="http://www.huawei.com.cn/schema/common/v2_1">
+            <tns:spId>107031</tns:spId>
+            <tns:spPassword>{{sp_password}}</tns:spPassword>
+            <tns:timeStamp>{{timestamp}}</tns:timeStamp>
+            <tns:serviceId>107031000</tns:serviceId>
+        </tns:RequestSOAPHeader>
+    </soapenv:Header>
+    <soapenv:Body>
+        <req:RequestMsg>
+            <!-- <![CDATA[ -->
+                <request xmlns="http://api-v1.gen.mm.vodafone.com/mminterface/request">
+                    <Transaction>
+                        <CommandID>TransactionStatusQuery</CommandID>
+                        <OriginatorConversationID>{{$randomUUID}}</OriginatorConversationID>
+                        <Parameters>
+                            <Parameter>
+                            <!-- Can also be OriginatorConversationID or ConversationID -->
+                            <!-- Only ReceiptNumber will give a response for transactions older than 15 days -->
+                                <Key>ReceiptNumber</Key>
+                                <Value>NH26HBCQ1Y</Value>
+                            </Parameter>
+                        </Parameters>
+                        <ReferenceData>                       
+                            <ReferenceItem>
+                                <Key>QueueTimeoutURL</Key>
+                                <Value>https://{{tunnel_ip}}/b2c-query-timeout</Value>
+                            </ReferenceItem>
+                        </ReferenceData>
+                        <Timestamp>2019-03-18T17:22:09.651011Z</Timestamp>
+                    </Transaction>
+                    <Identity>
+                        <Caller>
+                            <CallerType>2</CallerType>
+                            <ThirdPartyID>345612</ThirdPartyID>
+                            <Password>Password0</Password>
+                            <ResultURL>https://{{tunnel_ip}}/b2c-query-result</ResultURL>
+                        </Caller>
+                        <Initiator>
+                            <IdentifierType>11</IdentifierType>
+                            <Identifier>testAPI</Identifier>
+                            <SecurityCredential>{{initiator_credential}}</SecurityCredential>
+                            <ShortCode>511382</ShortCode>
+                        </Initiator>
+                    </Identity>
+                    <KeyOwner>1</KeyOwner>
+                </request>
+            <!-- ]]> -->
+        </req:RequestMsg>
+    </soapenv:Body>
+</soapenv:Envelope>
+```
+My feedback: 
+- Apart from being similar to the B2C Legacy request, it's easily noticeable that it uses the POST method to actually query the status of a transaction. Logically speaking, this is 'conventionally wrongly' implemented because according to [RFC 7231](https://tools.ietf.org/html/rfc7231#page-25) POST method is functionally used to post a block of data for server side processing commonly for creating a new resource on a server. 
+
+The appropriate method to be used for such an API would be GET. Here's Daraja 2.0's impelementation of Transaction Status API:
+
+```
+curl -X GET https://daraja-2-0-api.url/mpesa/transactions?txn_id=SOME_TXN_ID --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/vnd.api+json" --header "Accept: application/vnd.api+json"
+```
+
+My feedback:
+- good use of the GET method according to [RFC 7231](https://tools.ietf.org/html/rfc7231#page-24) which is functionally used for information retrieval.
 
 Winner: **Daraja 2.0**
 
