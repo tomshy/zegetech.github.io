@@ -456,13 +456,13 @@ curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-T
         "id" : 1,
         "attributes" : {
             "category": "BusinessPayment",
-    		"amount": 1000,
-    		"recipient_no": "0722000024",
-    		"recipient_type": "msisdn",
+            "amount": 1000,
+            "recipient_no": "0722000024",
+            "recipient_type": "msisdn",
             "posted_at": "2019-03-18T17:22:09.651011Z",
-		    "recipient_id_type":"national_id", // optional
-		    "recipient_id_number": "21212121", // optional
-		    "reference": "12345678" // for B2B transfer
+            "recipient_id_type":"national_id", // optional
+            "recipient_id_number": "21212121", // optional
+            "reference": "12345678" // for B2B transfer
         }
     }
 }
@@ -480,7 +480,6 @@ curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-T
     }
   }
 }
-
 ```
 
 #### Callback Result
