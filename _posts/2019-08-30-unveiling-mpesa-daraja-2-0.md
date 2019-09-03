@@ -452,17 +452,17 @@ Proposed Daraja 2.0 implementation of the B2C API :
 curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/vnd.api+json" --header "Accept: application/vnd.api+json" -d "
 {
     "data":{
-        "type" : "pay_outs",
+        "type" : "payouts",
         "id" : 1,
         "attributes" : {
-            "uuid": "1_payout",
             "category": "BusinessPayment",
-            "amount": 1000,
-            "recipient_type": "msisdn", // or "shortcode" for B2B transfer
-            "recipient_id": "", // optional
-            "recipient_id_type":"", // optional
-            "recipient_no": "25472264885",
-            "posted_at": "2019-03-18T17:22:09.651011Z"
+    		"amount": 1000,
+    		"recipient_no": "0722000024",
+    		"recipient_type": "msisdn",
+            "posted_at": "2019-03-18T17:22:09.651011Z",
+		    "recipient_id_type":"national_id", // optional
+		    "recipient_id_number": "21212121", // optional
+		    "reference": "12345678" // for B2B transfer
         }
     }
 }
@@ -603,6 +603,6 @@ Winner: **Daraja 2.0**
 
 This isn't to say that this unveiling is perfect. This is to get us thinking as a community, share out our ideas on how Daraja 2.0 could be like, discuss the best approach to solving the challenges that the community faces and finally playing our roles in constantly improving the fintech space. 
 
-While putting this piece together, we bumped into some fulfilling thoughts by one of the market players: [Proxy API](https://proxyapi.co.ke). It's solution that seeks to 'make Mpesa APIs simple'(from the websites tagline). Taking a quick look at this implementation, we would say that it's a huge step towards better Mpesa APIs design. However, we feel like it's more of Daraja API and much still needs to be done. Here are [Proxy API's docs](https://docs.proxyapi.co.ke/v1/). Feel free to try them out and say a word on it in the comments section. Proxy API only confirms the need for improvement to not only Daraja API but also other APIs' designs and implementation. 
+While putting this piece together, we bumped into some fulfilling thoughts by one of the market players: [Proxy API](https://proxyapi.co.ke). It's a solution that seeks to 'make Mpesa APIs simple'(from the websites tagline). Taking a quick look at this implementation, we would say that it's a huge step towards better Mpesa APIs design. However, we feel like it's more of Daraja API and much still needs to be done. Here are [Proxy API's docs](https://docs.proxyapi.co.ke/v1/). Feel free to try them out and say a word on it in the comments section. Proxy API only confirms the need for improvement to not only Daraja API but also other APIs' designs and implementation. 
 
 Coming to this point must have got you thinking throughout the piece. We would be very much pleased to get a sense of your thoughts, lessons picked from the piece or simply a thumbs up in the comments section. 
