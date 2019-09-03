@@ -1,9 +1,9 @@
 ---
 layout: blog
-title: Why Use JSON:API Format?
-date: 2019-06-18 16:24 +0300
+title: JSON:API - REST from the Chaos
+date: 2019-08-22 16:24 +0300
 categories: developer, api
-published: false
+published: true
 author: Ngari Ndung'u
 blog-image: jsonapi/jsonapi.png
 intro: |
@@ -14,16 +14,13 @@ intro: |
 ---
 ![Hallway with concrete pillars](/assets/images/blog/{{page.blog-image}}){:.img-responsive .center}
 
-{:.image-attribution}
-Original Photo by Jace & Afsoon on Unsplash
-
 {{page.intro}}
 ## What it is
 [**JSON:API**](https://jsonapi.org/format/) specification is exactly what it reads like. But just so we're on the same page...
 First, lets decompose the name; JSON - the data format we all know and love(or hate) and API - the lifeblood of today's technology industry.
-The JSON:API specification addresses itself to clients that make JSON requests and the servers that respond to those requests.
+The JSON:API specification dictates request and response formats to clients that make JSON requests and the servers that respond to those requests.
 
-JSON:API provides a standard structure that makes the different components of a response/request easy to pick out. Here's a simplified JSON:API document:
+JSON:API provides a standard structure that makes the different components of a response/request easy to pick out. Here's are two example JSON:API document:
 ``` json
   {
     "data": {
@@ -31,21 +28,37 @@ JSON:API provides a standard structure that makes the different components of a 
       "id": "1",
       "attributes": {}
     },
-    "meta": {},
-    "errors": [],
     "links": {},
-    "included": []
+    "included": [],
+    "meta": {}
   }
 ``` 
-`data` represents the *resource object(s)* or *primary data* requested or being manipulated.
-The `data` and `errors` keys are mutually exclusive, and either one or a `meta` object is required for a request/response that contains data.
+
+```json
+{
+  "errors": [
+    {
+      "status": 400,
+      "detail": "Something went wrong there",
+      "id": 134324,
+      "meta": {
+        "resource_id": "1",
+        "other_field": "NH90000000"
+      }
+    }
+  ]
+}
+``` 
+
+`data` represents the *resource object(s)* or *primary data* requested or being manipulated. A document MUST contain at least one of the following top-level members: `data`, `errors` and `meta`. The members `data` and `errors` MUST NOT coexist in the same document.
+
 The promise of JSON:API? That every compliant API you use will only ever have these components(plus what may be added to the specification).
 Once you know what these keys - and their subkeys - mean, you'll know for all APIs!
 
 ## Why use it?
 ### Advantages for the consumer
 **Reduced network calls** - resources related to the current resource being retrieved from the server can be included in the response using the `included` key.
-Using the (overused) blog example, it is common for comments on an article to be displayed below it.
+Using a blog example, it is common for comments on an article to be displayed below it.
 It makes sense therefore that an API responds to a request to e.g `/articles/1/` with the article's comments in tow.
 ``` json
   {
@@ -94,21 +107,23 @@ We all do some Postman/Curl/whatever testing right? The readability of a JSON:AP
 }
 ```
 Now, I might be biased here, but with the JSON:API response, it is immediately obvious that the request failed and the HTTP status code.
-With the flat JSON object you'll need to go fishing.
+With the flat JSON object you might need to go fishing.
 
 ### For the API developer
-*Time saver*
+**Time saver**
 > If you’ve ever argued with your team about the way your JSON responses should be formatted, JSON:API can be your anti-bikeshedding tool.
 
 APIs are usually the public facing aspects of the products we build. As such it is only natural to want to make them beautiful.
 Problem is, everyone will have an opinion as to what beauty is. And, that opinion might change the next day.
 JSON:API saves time by focusing the conversation away from structure to content.
 
-*Convention over configuration*
+![User style guide](/assets/images/blog/jsonapi/code_quality.png){:.img-responsive .center}
+
+**Convention over configuration**
 JSON:API makes a number of pragmatic choices that the developer would normally have to spend time thinking over.
 Among the decisions that are made for you include what HTTP response codes to use and how to support sorting, pagination and filtering.
 
-*Errors are a first-class citizen*
+**Errors are a first-class citizen**
 `data` for successful requests, `errors` for failed requests.
 Errors, not one, but as many as you might want to inform the consumer of.
 It is only so easy for us to send back plain error status codes. And keep the developer guessing as to how they wronged the gods.
@@ -133,6 +148,6 @@ There is [tooling](https://jsonapi.org/implementations/) built around the spec t
 There are both client and server-side implementations, and chances are, your favorite language is covered.
 
 ## So...
-We are in the process of transitioning to JSON:API, but I can't claim that it has been an easy sell.
-There are times when we question the suitability of the specification, mostly when we're feeling lazy.
-Overall we are sticking with it because we feel that it gives us consistency, a clean structure and provides room to extend our APIs in the future.
+We've been transitioning to JSON:API, and I can't claim that it was an easy sell.
+There were times when we question the suitability of the specification, mostly when we're feeling lazy or shackled by old structure thinking. 
+Overall we are sticking with it because we feel that it gives us consistency, a clean structure and provides room to extend our APIs in the future. In our quest to find a solution to ground as through the [challenges of API development](2018-12-08-api-dive.md), we evaluated a number of options and JSON:API won. In a sense, we are bringing order and efficiency to our API development process, not fogetting our mantra as zegetech... **Be Kind to Future Self**
